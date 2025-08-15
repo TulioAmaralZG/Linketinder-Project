@@ -27,6 +27,7 @@ class Candidato implements Pessoa {
         this.competencias = competencias;
     }
 
+
     @Override
     String getRG() {
         return null
