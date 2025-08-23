@@ -1,6 +1,7 @@
 import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
+import java.util.zip.DataFormatException
 
 class Candidato implements Pessoa {
     String nome
@@ -15,16 +16,22 @@ class Candidato implements Pessoa {
 
 
     Candidato(String nome, String dataNascimento, String email, String cpf, String pais, String estado, String cep, String descricao, List<String> competencias){
-        this.nome = nome;
-        def formato = DateTimeFormatter.ofPattern('dd/MM/yyyy')
-        this.dataNascimento = LocalDate.parse(dataNascimento, formato)
-        this.email = email;
-        this.cpf = cpf;
-        this.pais = pais;
-        this.estado = estado;
-        this.cep = cep;
-        this.descricao = descricao;
-        this.competencias = competencias;
+        try {
+            this.nome = nome;
+            def formato = DateTimeFormatter.ofPattern('dd/MM/yyyy')
+            this.dataNascimento = LocalDate.parse(dataNascimento, formato)
+            this.email = email;
+            this.cpf = cpf;
+            this.pais = pais;
+            this.estado = estado;
+            this.cep = cep;
+            this.descricao = descricao;
+            this.competencias = competencias;
+        }catch(DataFormatException e){
+            throw new IllegalArgumentException("Data esta em um formato invalido.")
+        }catch(Exception e){
+            throw new RuntimeException("Erro ao criar Candidado!!")
+        }
     }
 
 

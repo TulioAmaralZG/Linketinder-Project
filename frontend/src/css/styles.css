@@ -1,0 +1,45 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*Botões para alterar entre a empresa e usuário*/
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+button{
+    min-height: 40px;
+    min-width: 100px;
+    border-radius: 25px;
+}
+
+
+/*Exibição dos usuários e empresas*/
+.display{
+    margin-top: 20px;
+    border: 1px solid;
+    max-width: 400px;
+    border-radius: 10px;
+
+}
+
+.display li{
+    list-style-type: none;
+    border: 1px solid;
+
+}
+
+
+
