@@ -69,6 +69,7 @@ cadForm.addEventListener("submit", (e) =>{
         }else{
             usuarios = [];
         }
+        if(!modoPessoa) return;
         usuarios.push({nome, email, id, descricao, estado, checkCompetencias, pais, cep});
         localStorage.setItem("usuarios", JSON.stringify(usuarios));
     }else{
@@ -77,6 +78,7 @@ cadForm.addEventListener("submit", (e) =>{
         }else{
             empresas = [];
         }
+        if(modoPessoa) return;
         empresas.push({nome, email, id, descricao, estado, checkCompetencias, pais, cep});
         localStorage.setItem("empresas", JSON.stringify(empresas));
     }
