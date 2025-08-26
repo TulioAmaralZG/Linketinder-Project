@@ -1,0 +1,17 @@
+{
+  "name": "linketinder-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "live-server src",
+    "build": "tsc -p src/ts/tsconfig.json",
+    "watch": "tsc -w -p src/ts/tsconfig.json"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.0",
+    "live-server": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/chart.js": "^2.9.41",
+    "typescript": "^5.0.0"
+  }
+}
