@@ -9,6 +9,7 @@
 </head>
 <body>
 <main>
+
     <div class="container">
         <button type="button" id="buttonPessoa" >Usuario</button>
         <button type="button" id="buttonExibicao">Criar</button>
@@ -23,37 +24,48 @@
         <h2 id="adicionarEmpresaUsuario"></h2>
         <form id="itemForm">
             <div>
-                <label for="nomeEmpresa"> Nome da Empresa: </label>
+                <label for="nomeEmpresa" id="labelNomeEmpresa">Nome do Usuario:</label>
                 <input type="text" id="nomeEmpresa" required>
             </div>
             <div>
-                <label for="emailEmpresa"> Email da empresa: </label>
+                <label for="emailEmpresa" id="labelEmailEmpresa">Email do Usuario:</label>
                 <input type="text" id="emailEmpresa" required>
             </div>
             <div>
-                <label for="idEmpresa"> CNPJ da Empresa: </label>
+                <label for="idEmpresa" id="labelIdEmpresa">CPF do Usuario:</label>
                 <input type="text" id="idEmpresa" required>
             </div>
             <div>
-                <label for="paisEmpresa"> Pais da Empresa: </label>
+                <label for="paisEmpresa" id="labelPaisEmpresa">Pais do Usuario:</label>
                 <input type="text" id="paisEmpresa" required>
             </div>
             <div>
-                <label for="cepEmpresa"> CEP da Empresa: </label>
+                <label for="cepEmpresa" id="labelCepEmpresa">Cep do Usuario:</label>
                 <input type="text" id="cepEmpresa" required>
             </div>
             <div>
-                <label for="descricaoEmpresa"> Descricao da Empresa: </label>
+                <label for="descricaoEmpresa" id="labelDescricaoEmpresa">Descricao do Usuario:</label>
                 <input type="text" id="descricaoEmpresa" required>
             </div>
             <div>
-                <label for="estadoEmpresa"> Estado da Empresa: </label>
+                <label for="estadoEmpresa" id="labelEstadoEmpresa">Estado do Usuario:</label>
                 <input type="text" id="estadoEmpresa" required>
             </div>
             <div>
+                <span>Vaga</span>
+                <div id="vagas" class="vagas" style="display: none;" >
+                    <div>
+                        <label for="nomeVaga" id="labelVagaEmpresa">Nome:</label>
+                        <input type="text" id="nomeVaga" required>
+                    </div>
+                    <div>
+                        <label for="descricaoVaga" id="labelDescricaoVaga">Descricao:</label>
+                        <input type="text" id="descricaoVaga" required>
+                    </div>
+                </div>
                 <label>Competências:</label>
                 <div class="competencias-container">
-                    <div class="competencias-lista">
+                    <div class="compete ncias-lista">
                         <div class="competencia-lista">
                             <input type="checkbox" id="java" name="competencias" value="java" class="competencias">
                             <label for="java">Java</label>

@@ -9,7 +9,7 @@ export class Empresa implements Pessoa{
     private _estado: string; //tem
     private _cep: string; //nao
     private _descricao: string; //tem
-    private _competencias: string[]; //tem
+    private _vagas: string[]; //tem
     private _cnpj: string; //tem
 
     constructor(
@@ -20,7 +20,7 @@ export class Empresa implements Pessoa{
     estado: string,
     cep: string,
     descricao: string,
-    competencias: string[]) {
+    vagas: string[]) {
         this._id = Empresa.proximoId++;
         this._nome = nome;
         this._email = email;
@@ -29,7 +29,7 @@ export class Empresa implements Pessoa{
         this._estado = estado;
         this._cep = cep;
         this._descricao = descricao;
-        this._competencias = competencias;
+        this._vagas = vagas;
     }
 
     get id(): number {
@@ -91,11 +91,11 @@ export class Empresa implements Pessoa{
     }
 
     get competencias(): string[] {
-        return this._competencias;
+        return this._vagas;
     }
 
     set competencias(value: string[]) {
-        this._competencias = value;
+        this._vagas = value;
     }
 
     get cnpj(): string {

@@ -12,6 +12,15 @@ const criacaoFormulario = document.getElementById('cricaoFormulario') || null;
 const buttonPessoa = document.getElementById('buttonPessoa') || null;
 const buttonGrafico = document.getElementById('buttonGrafico') || null;
 const displayGrafico = document.getElementById('criacaoGrafico') || null;
+const displayVagas = document.getElementById("vagas") || null;
+/*Alterando os nome dos labels*/
+const labelNomeEmpresa = document.getElementById('labelNomeEmpresa') || null;
+const labelEmailEmpresa = document.getElementById('labelEmailEmpresa') || null;
+const labelIdEmpresa = document.getElementById('labelIdEmpresa') || null;
+const labelDescricaoEmpresa = document.getElementById('labelDescricaoEmpresa') || null;
+const labelEstadoEmpresa = document.getElementById('labelEstadoEmpresa') || null;
+const labelPaisEmpresa = document.getElementById('labelPaisEmpresa') || null;
+const labelCepEmpresa = document.getElementById('labelCepEmpresa') || null;
 /*Criando e salvando o form*/
 const cadForm = document.getElementById('itemForm') || null;
 document.addEventListener("DOMContentLoaded", (e) => {
@@ -174,10 +183,26 @@ function mudandoPessoa() {
     modoPessoa = !modoPessoa;
     if (modoPessoa) {
         buttonPessoa.textContent = 'Usuario'; //false
+        labelNomeEmpresa.textContent = 'Nome do Usuario:';
+        labelEmailEmpresa.textContent = 'Email do Usuario:';
+        labelIdEmpresa.textContent = 'CPF do Usuario:';
+        labelDescricaoEmpresa.textContent = 'Descricao do Usuario:';
+        labelEstadoEmpresa.textContent = 'Estado do Usuario:';
+        labelPaisEmpresa.textContent = 'Pais do Usuario:';
+        labelCepEmpresa.textContent = 'CEP do Usuario:';
+        displayVagas.style.display = 'none';
         carregarLista();
     }
     else {
         buttonPessoa.textContent = 'Empresa'; //true
+        labelNomeEmpresa.textContent = 'Nome da Empresa:';
+        labelEmailEmpresa.textContent = 'Email da Empresa:';
+        labelIdEmpresa.textContent = 'CNPJ da Empresa:';
+        labelDescricaoEmpresa.textContent = 'Descricao da Empresa:';
+        labelEstadoEmpresa.textContent = 'Estado da Empresa:';
+        labelPaisEmpresa.textContent = 'Pais da Empresa:';
+        labelCepEmpresa.textContent = 'CEP da Empresa:';
+        displayVagas.style.display = 'block';
         carregarLista();
     }
 } // FINALIZADO!!

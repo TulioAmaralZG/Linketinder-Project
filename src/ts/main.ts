@@ -13,6 +13,16 @@ const criacaoFormulario = document.getElementById('cricaoFormulario') as HTMLBut
 const buttonPessoa = document.getElementById('buttonPessoa') as HTMLButtonElement || null;
 const buttonGrafico = document.getElementById('buttonGrafico') as HTMLButtonElement || null;
 const displayGrafico = document.getElementById('criacaoGrafico') as HTMLButtonElement || null;
+const displayVagas = document.getElementById("vagas") as HTMLButtonElement || null;
+
+/*Alterando os nome dos labels*/
+const labelNomeEmpresa = document.getElementById('labelNomeEmpresa') as HTMLLabelElement || null;
+const labelEmailEmpresa = document.getElementById('labelEmailEmpresa') as HTMLLabelElement || null;
+const labelIdEmpresa = document.getElementById('labelIdEmpresa') as HTMLLabelElement || null;
+const labelDescricaoEmpresa = document.getElementById('labelDescricaoEmpresa') as HTMLLabelElement || null;
+const labelEstadoEmpresa = document.getElementById('labelEstadoEmpresa') as HTMLLabelElement || null;
+const labelPaisEmpresa = document.getElementById('labelPaisEmpresa') as HTMLLabelElement || null;
+const labelCepEmpresa = document.getElementById('labelCepEmpresa') as HTMLLabelElement || null;
 
 /*Criando e salvando o form*/
 const cadForm = document.getElementById('itemForm')  as HTMLFormElement || null;
@@ -127,6 +137,8 @@ cadForm.addEventListener("submit", (e) =>{
     const competencias = document.querySelectorAll('input[type="checkbox"]');
     const paisEmpresa = document.getElementById("paisEmpresa") as HTMLInputElement;
     const cepEmpresa = document.getElementById("cepEmpresa") as HTMLInputElement;
+    const nomeVaga = document.getElementById("nomeVaga") as HTMLInputElement;
+    const descricaoVaga = document.getElementById("descricaoVaga") as HTMLInputElement;
 
 
     let values: string[] = [];
@@ -147,11 +159,14 @@ cadForm.addEventListener("submit", (e) =>{
     const descricao = descricaoEmpresa.value;
     const estado = estadoEmpresa.value;
     const checkCompetencias = values;
+    const nameVaga = nomeVaga.value;
+    const ddescriptionVaga = descricaoVaga.value;
 
 
 
     let empresas = [];
     let usuarios = [];
+    let vagas = [];
 
     const tipo = modoPessoa ? "usuário" : "empresa";
     const adicionarEmpresaUsuario = document.getElementById("adicionarEmpresaUsuario");
@@ -174,11 +189,15 @@ cadForm.addEventListener("submit", (e) =>{
         }else{
             if(localStorage.hasOwnProperty("empresas")){
                 empresas = JSON.parse(localStorage.getItem("empresas") || "[]");
+                vagas = JSON.parse(localStorage.getItem("vagas") || "[]");
             }else{
                 empresas = [];
+                vagas = [];
             }
             if(modoPessoa) return;
-            empresas.push({nome, email, id, descricao, estado, checkCompetencias, pais, cep});
+            vagas.push({nameVaga, ddescriptionVaga});
+            empresas.push({nome, email, id, descricao, vagas, estado, pais, cep});
+
             localStorage.setItem("empresas", JSON.stringify(empresas));
         }
     }
@@ -208,9 +227,25 @@ function mudandoPessoa(){
 
     if(modoPessoa){
         buttonPessoa.textContent = 'Usuario'; //false
+        labelNomeEmpresa.textContent = 'Nome do Usuario:';
+        labelEmailEmpresa.textContent = 'Email do Usuario:';
+        labelIdEmpresa.textContent = 'CPF do Usuario:';
+        labelDescricaoEmpresa.textContent = 'Descricao do Usuario:';
+        labelEstadoEmpresa.textContent = 'Estado do Usuario:';
+        labelPaisEmpresa.textContent = 'Pais do Usuario:';
+        labelCepEmpresa.textContent = 'CEP do Usuario:';
+        displayVagas.style.display = 'none';
         carregarLista();
     }else{
         buttonPessoa.textContent = 'Empresa'; //true
+        labelNomeEmpresa.textContent = 'Nome da Empresa:';
+        labelEmailEmpresa.textContent = 'Email da Empresa:';
+        labelIdEmpresa.textContent = 'CNPJ da Empresa:';
+        labelDescricaoEmpresa.textContent = 'Descricao da Empresa:';
+        labelEstadoEmpresa.textContent = 'Estado da Empresa:';
+        labelPaisEmpresa.textContent = 'Pais da Empresa:';
+        labelCepEmpresa.textContent = 'CEP da Empresa:';
+        displayVagas.style.display = 'block';
         carregarLista();
     }
 
@@ -230,9 +265,11 @@ function mundandoExibicao(){
         criacaoFormulario.style.display = 'block';
         displayGrafico.style.display = 'none';
 
+
     }else{
         buttonExbicao.textContent = 'Criar';
         display.style.display = 'block';
+
         criacaoFormulario.style.display = 'none';
         displayGrafico.style.display = 'none';
         carregarLista()

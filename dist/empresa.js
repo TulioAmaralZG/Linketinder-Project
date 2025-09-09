@@ -1,5 +1,5 @@
 export class Empresa {
-    constructor(nome, email, pais, cnpj, estado, cep, descricao, competencias) {
+    constructor(nome, email, pais, cnpj, estado, cep, descricao, vagas) {
         this._id = Empresa.proximoId++;
         this._nome = nome;
         this._email = email;
@@ -8,7 +8,7 @@ export class Empresa {
         this._estado = estado;
         this._cep = cep;
         this._descricao = descricao;
-        this._competencias = competencias;
+        this._vagas = vagas;
     }
     get id() {
         return this._id;
@@ -53,10 +53,10 @@ export class Empresa {
         this._descricao = value;
     }
     get competencias() {
-        return this._competencias;
+        return this._vagas;
     }
     set competencias(value) {
-        this._competencias = value;
+        this._vagas = value;
     }
     get cnpj() {
         return this._cnpj;
