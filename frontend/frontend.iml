@@ -7,5 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Chart.js" level="application" />
+    <orderEntry type="library" name="chart.js" level="application" />
+    <orderEntry type="library" name="mssql-jdbc-13.2.0.jre8-sources" level="project" />
+    <orderEntry type="library" name="hsqldb" level="project" />
   </component>
 </module>

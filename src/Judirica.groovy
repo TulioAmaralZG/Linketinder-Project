@@ -1,7 +1,7 @@
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class Judirica implements Pessoa{
+class Juridica implements Pessoa{
 
     String nome
     String email
@@ -12,8 +12,7 @@ class Judirica implements Pessoa{
     String descricao
     List <String> competencias
 
-    Judirica(String nome, String email, String cnpj, String pais, String estado, String cep, String descricao, List<String> competencias){
-
+    Juridica(String nome, String email, String cnpj, String pais, String estado, String cep, String descricao, List<String> competencias){
         this.nome = nome;
         this.email = email;
         this.cnpj = cnpj;
@@ -26,7 +25,7 @@ class Judirica implements Pessoa{
 
     @Override
     String getNome() {
-        return null
+        return this.nome
     }
 
     @Override
@@ -36,7 +35,7 @@ class Judirica implements Pessoa{
 
     @Override
     String getEmail() {
-        return null
+        return this.email
     }
 
     @Override
@@ -46,7 +45,7 @@ class Judirica implements Pessoa{
 
     @Override
     String getRG() {
-        return null
+        return this.cnpj
     }
 
     @Override
@@ -56,7 +55,7 @@ class Judirica implements Pessoa{
 
     @Override
     String getIdade() {
-        return null
+        return this.idade
     }
 
     @Override
@@ -66,7 +65,7 @@ class Judirica implements Pessoa{
 
     @Override
     String getEstado() {
-        return null
+        return this.estado
     }
 
     @Override
@@ -76,7 +75,7 @@ class Judirica implements Pessoa{
 
     @Override
     String getCEP() {
-        return null
+        return this.cep
     }
 
     @Override
@@ -86,7 +85,7 @@ class Judirica implements Pessoa{
 
     @Override
     String getDescricao() {
-        return null
+        return this.descricao
     }
 
     @Override
