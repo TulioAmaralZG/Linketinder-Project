@@ -3,12 +3,14 @@ class Vaga {
     String nome
     String descricao
     List <String> competencias
+    int empresa_id
 
 
-    Vaga(String nome, String descricao, List<String> competencias){
+    Vaga(String nome, String descricao, List<String> competencias, int empresa_id){
         this.nome = nome;
         this.descricao = descricao;
         this.competencias = competencias;
+        this.empresa_id = empresa_id;
     }
 
     String getDescricao() {

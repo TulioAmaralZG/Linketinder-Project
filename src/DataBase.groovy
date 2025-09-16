@@ -96,14 +96,20 @@ class DataBase {
                 cep: candidato.cep,
                 descricao: candidato.descricao
         ]
-        sql.executeInsert('''INSERT INTO usuarios(nome, nascimento, email, cpf, estado, pais, cep, descricao) VALUES (:nome, :nascimento, :email, :cpf, :estado, :pais, :cep, :descricao)''', params)
+        def result = sql.executeInsert('''INSERT INTO usuarios(nome, nascimento, email, cpf, estado, pais, cep, descricao) VALUES (:nome, :nascimento, :email, :cpf, :estado, :pais, :cep, :descricao)''', params)
+        int usuarioId = result[0][0] as Integer
 
+        if(candidato.competencias && !candidato.competencias.isEmpty()){
+            insertCompetencia(candidato.competencias, usuarioId, "usuario")
+        }
+
+        return usuarioId
     }
     def selectUsuario(){
         sql.eachRow('''SELECT * FROM usuarios''') { row ->
             println "ID: ${row.id} | Nome: ${row.nome} ${row.email}"
         }
-        sql.close()
+
     }
     def updateUsuario(Candidato candidato, int id){
         try{
@@ -153,6 +159,7 @@ class DataBase {
                 descricao: juridica.descricao
         ]
         sql.executeInsert('''INSERT INTO empresas(nome, email, cnpj, estado, pais, cep, descricao) VALUES (:nome, :email, :cnpj, :estado, :pais, :cep, :descricao)''', params)
+
     }
     def selectEmpresa(){
         sql.eachRow('''SELECT * FROM empresas''') { row ->
@@ -193,25 +200,35 @@ class DataBase {
     }
 
     //CRUD vagas
-    def insertVaga(){
-        def params = [
-                nome: vaga.nome,
-                descricao: vaga.descricao,
-                empresa_id: vaga.empresa_id
-        ]
-        sql.executeInsert('''INSERT INTO vagas(nome, descricao, empresa_id) VALUES (:nome, :descricao, :empresa_id)''', params)
+    def insertVaga(Vaga vaga){
+
+        sql.withTransaction {
+            def params = [
+                    nome      : vaga.nome,
+                    descricao : vaga.descricao,
+                    empresa_id: vaga.empresa_id
+            ]
+            def result = sql.executeInsert('''INSERT INTO vagas(nome, descricao, empresa_id) VALUES (:nome, :descricao, :empresa_id)''', params)
+            int vagaId = result[0][0] as Integer
+
+            if (vaga.competencias && !vaga.competencias.isEmpty()) {
+                insertCompetencia(vaga.competencias, vagaId, "vaga")
+            }
+
+            return vagaId
+        }
     }
     def selectVaga(){
         sql.eachRow('''SELECT * FROM vagas''') { row ->
-            println "ID: ${row.id} | Nome: ${row.nome} ${row.email}"
+            println "ID: ${row.id} | Nome: ${row.nome} | Descricao:${row.descricao}"
         }
     }
     def updateVaga(Vaga vaga, int id){
         try{
             def params = [
                     id: id,
-                    nome: candidato.nome,
-                    descricao: candidato.descricao
+                    nome: vaga.nome,
+                    descricao: vaga.descricao
             ]
 
             sql.executeUpdate('''UPDATE vagas SET
@@ -227,11 +244,43 @@ class DataBase {
     }
     def deleteVaga(){
         sql.execute('''DELETE FROM vagas WHERE id = :id''', [id: id])
+        sql.close()
     }
 
     //CRUD competencias
-    def insertCompetencia(){
+    def insertCompetencia(List<String> competencias, int id, String tipoId){
 
+        try{
+            competencias.each { competencia ->
+                def competenciaExiste = sql.firstRow(
+                        '''SELECT id FROM competencias WHERE competencia = ?'''
+                        , [competencia.trim().toUpperCase()])
+
+                int competenciaId
+
+                if(!competenciaExiste){
+                    def result = sql.executeInsert('''INSERT INTO competencias(competencia) VALUES (?)''', [competencia.trim().toUpperCase()])
+                    competenciaId = result[0][0] as Integer
+                }else{
+                    competenciaId = competenciaExiste.id as Integer
+                }
+
+                if(tipoId.equalsIgnoreCase("usuario")){
+                    sql.executeInsert('''
+                        INSERT INTO usuarios_competencias(usuario_id, competencia_id) 
+                        VALUES (?, ?)''', [id, competenciaId])
+
+                }else if(tipoId.equalsIgnoreCase("vaga")){
+                    sql.executeInsert('''
+                        INSERT INTO vagas_competencias(vaga_id, competencia_id) 
+                        VALUES (?, ?)''', [id, competenciaId])
+                }
+            }
+            return true
+        } catch(Exception e){
+            println("Erro: ${e.message}");
+            return false
+        }
     }
     def selectCompetencia(){}
     def updateCompetencia(){}
