@@ -1,0 +1,26 @@
+{
+  "name": "linketinder-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node_modules/.bin/live-server src",
+    "build": "node_modules/.bin/tsc -p src/ts/tsconfig.json",
+    "watch": "node_modules/.bin/tsc -w -p src/ts/tsconfig.json"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.0",
+    "live-server": "^1.2.0",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/chart.js": "^2.9.41",
+    "typescript": "^5.0.0"
+  },
+  "description": "Abaixo está o modelo conceitual do banco de dados, feito no DBDiagram.io.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

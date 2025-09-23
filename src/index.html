@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Linketinder</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.js"></script>    <script type="module" src="../dist/main.js" defer></script>
+
+</head>
+<body>
+<main>
+
+    <div class="container">
+        <button type="button" id="buttonPessoa" >Usuario</button>
+        <button type="button" id="buttonExibicao">Criar</button>
+        <button type="button" id="buttonGrafico">Gráfico</button>
+    </div>
+    <div class="display" id="displayContainer">
+        <ul id="lista">
+
+        </ul>
+    </div>
+    <div id="cricaoFormulario" style="display: none;">
+        <h2 id="adicionarEmpresaUsuario"></h2>
+        <form id="itemForm">
+            <div>
+                <label for="nomeEmpresa" id="labelNomeEmpresa">Nome do Usuario:</label>
+                <input type="text" id="nomeEmpresa" required>
+            </div>
+            <div>
+                <label for="emailEmpresa" id="labelEmailEmpresa">Email do Usuario:</label>
+                <input type="text" id="emailEmpresa" required>
+            </div>
+            <div>
+                <label for="idEmpresa" id="labelIdEmpresa">CPF do Usuario:</label>
+                <input type="text" id="idEmpresa" required>
+            </div>
+            <div>
+                <label for="paisEmpresa" id="labelPaisEmpresa">Pais do Usuario:</label>
+                <input type="text" id="paisEmpresa" required>
+            </div>
+            <div>
+                <label for="cepEmpresa" id="labelCepEmpresa">Cep do Usuario:</label>
+                <input type="text" id="cepEmpresa" required>
+            </div>
+            <div>
+                <label for="descricaoEmpresa" id="labelDescricaoEmpresa">Descricao do Usuario:</label>
+                <input type="text" id="descricaoEmpresa" required>
+            </div>
+            <div>
+                <label for="estadoEmpresa" id="labelEstadoEmpresa">Estado do Usuario:</label>
+                <input type="text" id="estadoEmpresa" required>
+            </div>
+            <div>
+                <span>Vaga</span>
+                <div id="vagas" class="vagas" style="display: none;" >
+                    <div>
+                        <label for="nomeVaga" id="labelVagaEmpresa">Nome:</label>
+                        <input type="text" id="nomeVaga" required>
+                    </div>
+                    <div>
+                        <label for="descricaoVaga" id="labelDescricaoVaga">Descricao:</label>
+                        <input type="text" id="descricaoVaga" required>
+                    </div>
+                </div>
+                <label>Competências:</label>
+                <div class="competencias-container">
+                    <div class="compete ncias-lista">
+                        <div class="competencia-lista">
+                            <input type="checkbox" id="java" name="competencias" value="java" class="competencias">
+                            <label for="java">Java</label>
+                        </div>
+                        <div class="competencia-lista">
+                            <input type="checkbox" id="groovy" name="competencias" value="groovy" class="competencias">
+                            <label for="java">Groovy</label>
+                        </div>
+                        <div class="competencia-lista">
+                            <input type="checkbox" id="javascript" name="competencias" value="javascript" class="competencias">
+                            <label for="java">JavaScript</label>
+                        </div>
+                        <div class="competencia-lista">
+                            <input type="checkbox" id="TypeScript" name="competencias" value="TypeScript" class="competencias">
+                            <label for="java">TypeScript</label>
+                        </div>
+                    </div>
+                    <div class="nova-competencia">
+                        <input type="text" id="novaCompetencia" name="novaCompetencia" placeholder="Outra competencia">
+                        <button type="button" id="adicionarCompetencia">+</button>
+                    </div>
+                </div>
+            </div>
+            <div id="buttonCriacao">
+                <button type="submit" value="Salvar">Salvar</button>
+                <button type="button" id="cancelar">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    <div id="criacaoGrafico" >
+        <canvas class="line-chart" id="grafico" width="400" height="400"></canvas>
+
+    </div>
+</main>
+
+</body>
+</html>
